@@ -26,7 +26,7 @@ class LRUCache:
     def get(self, key):
         if key in self.storage:
             value = self.storage[key]
-            self.dll.move_to_front
+            self.dll.move_to_front(value)
             return value
         else:
             return None
@@ -43,4 +43,14 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        if key in self.storage:
+            self.storage[key] = value
+            self.dll.move_to_front({key: value})
+            return "Moved key-value pair to front"
+        if self.size >= self.limit:
+            self.dll.remove_from_tail()
+            # return "At max capacity"
+            self.dll.add_to_head({key: value})
+            self.storage[key] = value
+            self.size += 1
+            return 'at max'
