@@ -14,6 +14,7 @@ class LRUCache:
        self.size = 0
        self.limit = limit
        self.dll = DoublyLinkedList()
+       self.storage = {} #no idea if this is right?
 
     """
     Retrieves the value associated with the given key. Also
@@ -23,7 +24,13 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        pass
+        if key in self.storage:
+            value = self.storage[key]
+            self.dll.move_to_front
+            return value
+        else:
+            return None
+
 
     """
     Adds the given key-value pair to the cache. The newly-
