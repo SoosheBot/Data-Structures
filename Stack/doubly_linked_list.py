@@ -76,7 +76,6 @@ class DoublyLinkedList:
         self.delete(self.head)
         return value
     
-    
 
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -132,11 +131,11 @@ class DoublyLinkedList:
        
         elif node is self.head:
             self.head = node.next
-            # node.delete()
+            node.delete()
   
         elif node is self.tail:
             self.tail = node.prev
-            # node.delete()
+            node.delete()
 
         else:
             node.delete()

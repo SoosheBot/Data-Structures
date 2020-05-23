@@ -9,16 +9,27 @@ return elements in Last In First Out order.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Stack?
 """
+
+import sys
+sys.path.append('../doubly_linked_list')
+from doubly_linked_list import DoublyLinkedList, ListNode
+
 class Stack:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
-
-    def __len__(self):
-        pass
+        # Why is our DLL a good choice to store our elements? DLLs have the flexibility of traversing list forward and backward -- singly linked lists can only go forward
+        self.storage = DoublyLinkedList()
 
     def push(self, value):
-        pass
+        self.size += 1
+        self.storage.add_to_head(value)
 
     def pop(self):
-        pass
+        if self.size > 0:
+            self.size -= 1
+            return self.storage.remove_from_head()
+        else:
+            return None
+    
+    def __len__(self):
+        return self.size

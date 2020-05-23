@@ -24,7 +24,7 @@ class Queue:
         #Doubly Linked List has built-in-methods to easily remove from head and add to tail
         self.storage = DoublyLinkedList()
 
-    def len(self):
+    def __len__(self):
        return self.size
        
     def enqueue(self, value):
