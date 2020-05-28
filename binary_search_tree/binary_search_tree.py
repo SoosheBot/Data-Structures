@@ -44,23 +44,63 @@ class BSTNode:
 
     # Return True if the tree contains the value
     # False if it does not
+    # def contains(self, target):
+        #To-dos:
+        #check tree for value at the root
+        # if root node doesn't have the value, return false and move on
+        # check branch on the right
+        # if value is in a node on the right return true and break
+        #else return false and go check the left node
+        #if value is in a node on the left branch return true and break
+   
+
     def contains(self, target):
-        if self.value == None:
-            return False
-        if self.value == target:
+        if target == self.value:
             return True
-        
-        return self.left.contains(target) or self.right.contains(target)
-        
-      
+        elif target > self.value:
+            if self.right is not None:
+                return self.right.contains(target)
+            else:
+                return False
+        else:
+            if target < self.value:
+                if self.left is not None:
+                    return self.left.contains(target)
+                else:
+                    return False
 
     # Return the maximum value found in the tree
+    # in-class version of get_max using while loop
     def get_max(self):
-        pass
+        while self.right is not None:
+            self = self.right
+        
+        return self.value
 
-    # Call the function `fn` on the value of each node
+    # alternative method to do the get_max
+    # def get_max(self):
+    #     if self.right:
+    #         return self.right.get_max()
+    #     else:
+    #         return self.value
+
+    # Call the function `fn` on the value of each self
     def for_each(self, fn):
-        pass
+       fn(self.value)
+       
+       if self.left:
+           self.left.for_each(fn)
+
+       if self.right:
+           self.right.for_each(fn)
+
+    # Alternative way to write this:
+    # def for_each(self, fn):
+    #     fn(self.value)
+    #     if self.left:
+    #         self.left.for_each(fn)
+    #     if self.right:
+    #         self.right.for_each(fn)
 
     # Part 2 -----------------------
 
@@ -69,7 +109,7 @@ class BSTNode:
     def in_order_print(self, node):
         pass
 
-    # Print the value of every node, starting with the given node,
+    # Print the value of every self, starting with the given self,
     # in an iterative breadth first traversal
     def bft_print(self, node):
         pass
