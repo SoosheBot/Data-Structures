@@ -15,7 +15,6 @@ class BSTNode:
         self.left = None
         self.right = None
 
-    # Insert the given value into the tree
     def insert(self, value):
         #To-dos
         #check if empty
@@ -29,7 +28,6 @@ class BSTNode:
                 #create right
             #else
                 #rightnode.insert value
-        # if new < node.value
         if value < self.value:
             if self.left is None:
                 self.left = BSTNode(value)
@@ -40,21 +38,20 @@ class BSTNode:
                 self.right = BSTNode(value)
             else:
                 self.right.insert(value)
-           
+
+
+
 
     # Return True if the tree contains the value
     # False if it does not
-    # def contains(self, target):
+    def contains(self, target):
         #To-dos:
         #check tree for value at the root
         # if root node doesn't have the value, return false and move on
         # check branch on the right
         # if value is in a node on the right return true and break
         #else return false and go check the left node
-        #if value is in a node on the left branch return true and break
-   
-
-    def contains(self, target):
+        #if value is in a node on the left branch then return true and break
         if target == self.value:
             return True
         elif target > self.value:
@@ -69,9 +66,14 @@ class BSTNode:
                 else:
                     return False
 
+
+
     # Return the maximum value found in the tree
     # in-class version of get_max using while loop
     def get_max(self):
+        #To-dos
+        #check if there is a right node -- if there is, get right
+        # otherwise, get left 
         while self.right is not None:
             self = self.right
         
@@ -84,8 +86,14 @@ class BSTNode:
     #     else:
     #         return self.value
 
+
+
     # Call the function `fn` on the value of each self
     def for_each(self, fn):
+        #To-dos:
+        #set the value of fn
+        #if there is a left node, call the fn of each self on the left
+        #otherwise do this on the right
        fn(self.value)
        
        if self.left:
@@ -94,30 +102,60 @@ class BSTNode:
        if self.right:
            self.right.for_each(fn)
 
-    # Alternative way to write this:
-    # def for_each(self, fn):
-    #     fn(self.value)
-    #     if self.left:
-    #         self.left.for_each(fn)
-    #     if self.right:
-    #         self.right.for_each(fn)
+
+
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        #To-dos:
+        #check if node is empty
+        #if not empty check right -- if not empty check right and left until you reach the final children
+        #then recurse back to check the left
+        if self.left is not None:
+            self.left.in_order_print(self.left)
+        
+        print(node.value)
+
+        if self.right is not None:
+            self.right.in_order_print(self.right)
+        
+
+
 
     # Print the value of every self, starting with the given self,
     # in an iterative breadth first traversal
     def bft_print(self, node):
         pass
+    #To-dos
+    # make a queue
+    # as long as the queue is not empty
+    # deque from the front of the queue, this is our current node
+    # enque the kids of the current node into the queue
+    
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+    #To-dos:
+    # make a stack -- push the head node on the stack
+    # loop and and check if the stack is empty -- as long as the stack is not empty...
+    ## pop off the stack -- this is the current_node
+    ## put the kids of the current node the stack
+    ## (check that they are not None -- then put them on the stack)
+        stack = []
+        stack.append(node)
+        while len(stack) != 0:
+            node = stack.pop()
+            print(node.value)
+            if node.left is not None:
+                stack.append(node.left)
+            if node.right is not None:
+                stack.append(node.right)
+
+    
 
     # Stretch Goals -------------------------
     # Note: Research may be required
